@@ -50,6 +50,17 @@ class CartFragment : Fragment() {
         val buy : Button = view.findViewById(R.id.buyButton)
         val reserve : Button = view.findViewById(R.id.resevreButton)
 
+        if(LoginInterface.getStatus() && LoginInterface.getType() == Type.K)
+        {
+            buy.isEnabled = true
+            reserve.isEnabled = true
+        }
+        else
+        {
+            buy.isEnabled = false
+            reserve.isEnabled = false
+        }
+
         refresh = view.findViewById(R.id.refreshCart)
 
         view.post(Thread{

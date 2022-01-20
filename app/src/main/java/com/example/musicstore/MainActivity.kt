@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.ic_home -> replaceFragment(productsFragment)
                 R.id.ic_cart -> replaceFragment(cartFragment)
                 R.id.ic_profile -> replaceFragment(profileFragment)
-
         }
             true
         }

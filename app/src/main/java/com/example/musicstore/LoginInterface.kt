@@ -16,6 +16,7 @@ class LoginInterface {
             this.login = state
         }
 
+        fun getType(): Type = type
         fun setType( type: Type)
         {
             this.type = type

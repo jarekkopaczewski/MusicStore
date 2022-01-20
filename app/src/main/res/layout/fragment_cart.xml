@@ -29,12 +29,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/buyButton" android:layout_weight="1"
                 android:layout_marginLeft="10dp" android:layout_marginRight="10dp" app:cornerRadius="25dp"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#FFFFFF" android:enabled="false"/>
         <Button
                 android:text="Reserve"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/resevreButton" android:layout_weight="1"
                 app:cornerRadius="25dp" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
-                android:textColor="#FBFBFB"/>
+                android:textColor="#FBFBFB" android:enabled="false"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
