@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/bottom_bar"
+            app:startDestination="@id/mainActivity">
+
+    <activity android:id="@+id/mainActivity" android:name="com.example.musicstore.MainActivity"
+              android:label="activity_main" tools:layout="@layout/activity_main"/>
+    <fragment android:id="@+id/productsFragment" android:name="com.example.musicstore.ProductsFragment"
+              android:label="fragment_products" tools:layout="@layout/fragment_products">
+        <action android:id="@+id/action_productsFragment_to_cartFragment" app:destination="@id/cartFragment"/>
+    </fragment>
+    <fragment android:id="@+id/cartFragment" android:name="com.example.musicstore.CartFragment"
+              android:label="fragment_cart" tools:layout="@layout/fragment_cart">
+        <action android:id="@+id/action_cartFragment_to_profileFragment" app:destination="@id/profileFragment"/>
+    </fragment>
+    <fragment android:id="@+id/profileFragment" android:name="com.example.musicstore.ProfileFragment"
+              android:label="fragment_profile" tools:layout="@layout/fragment_profile"/>
+    <fragment android:id="@+id/browseFragment" android:name="com.example.musicstore.BrowseFragment"
+              android:label="fragment_browse" tools:layout="@layout/fragment_browse"/>
+</navigation>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".BrowseFragment" android:id="@+id/constrainBrowser"
+                                                   android:clickable="false">
+    <ImageView
+            android:src="@drawable/shadow"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" android:id="@+id/imageView6" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/refreshLayout" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:rotation="180" android:scaleType="fitXY"
+            android:tint="#A5A4A4" app:layout_constraintVertical_bias="0.0"/>
+    <ImageView
+            android:src="@drawable/shadow"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" android:id="@+id/imageView7" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/refreshLayout" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:scaleType="fitXY"
+            android:tint="#939292" app:layout_constraintVertical_bias="1.0"/>
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/imageView6" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/browseConstrain"
+                android:layout_margin="5dp" android:gravity="center_vertical" android:paddingLeft="10dp"
+                android:backgroundTint="#8A8585"
+                android:layout_marginBottom="16dp"
+                android:hint="Szukaj"/>
+    </androidx.cardview.widget.CardView>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="660dp"
+            android:id="@+id/refreshLayout" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:rotation="180"
+            app:layout_constraintVertical_bias="1.0" android:layout_marginTop="15dp">
+        <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="SpeakableTextPresentCheck" android:clickable="false" android:rotation="180">
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/list" android:layout_marginTop="15dp">
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
