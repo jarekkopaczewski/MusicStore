@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.viewpager.widget.PagerAdapter
-import com.example.musicstore.ProductsFragment
-import com.example.musicstore.R
 import java.util.*
 
 
