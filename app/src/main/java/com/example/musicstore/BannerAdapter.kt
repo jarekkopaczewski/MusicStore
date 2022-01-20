@@ -12,6 +12,7 @@ import com.example.musicstore.R
 import java.util.*
 
 
+// testowy komentarz
 class BannerAdapter(private val context: ProductsFragment, private var images: IntArray) : PagerAdapter() {
 
     private var mLayoutInflater : LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
