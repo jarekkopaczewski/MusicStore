@@ -70,7 +70,7 @@ class BrowseFragment : Fragment() {
 
                         val fragment = ItemFragment()
                         fragment.setProduct( produkt )
-                        activity!!.supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                        requireActivity().supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
                             .replace((view!!.parent as ViewGroup).id, fragment)
                             .addToBackStack(null)
                             .commit()
