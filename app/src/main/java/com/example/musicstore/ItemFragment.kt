@@ -25,6 +25,8 @@ class ItemFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var product: ProductData
+    private lateinit var shopProductSM: ProductSM
+    private var type : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,12 @@ class ItemFragment : Fragment() {
 
     fun setProduct( product : ProductData ){
         this.product = product
+        this.type = 0
+    }
+
+    fun setProduct( product : ProductSM ){
+        this.shopProductSM = product
+        this.type = 1
     }
 
     @SuppressLint("SetTextI18n")
@@ -49,9 +57,18 @@ class ItemFragment : Fragment() {
         val itemPrice : TextView = view.findViewById(R.id.itemPrice)
         val orderButton : ImageView = view.findViewById(R.id.addToCartButton)
 
-        itemName.text = product.nazwa
-        itemCompany.text = product.producent
-        itemPrice.text = product.cena.toString()
+        if( type == 1)
+        {
+            itemName.text = shopProductSM.nazwa
+            itemCompany.text = shopProductSM.kod_kreskowy
+            itemPrice.text = shopProductSM.ilosc.toString()
+        }
+        else
+        {
+            itemName.text = product.nazwa
+            itemCompany.text = product.producent
+            itemPrice.text = product.cena.toString()
+        }
 
         orderButton.setOnClickListener{
             animateInOut(orderButton)

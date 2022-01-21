@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private val storeFragment = StoreFragment()
     private val profileFragment = ProfileFragment()
     private val cartFragment = CartFragment()
+    private val logedInFragment = LogedInFragment()
     private lateinit var bottomNavigation : BottomNavigationView
 
     @SuppressLint("ResourceType")
@@ -38,7 +39,14 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 R.id.ic_cart -> {replaceFragment(cartFragment)}
-                R.id.ic_profile -> {replaceFragment(profileFragment)}
+                R.id.ic_profile ->
+                {
+                    when(LoginInterface.getStatus())
+                    {
+                        true -> replaceFragment(logedInFragment)
+                        false -> replaceFragment(profileFragment)
+                    }
+                }
         }
             true
         }

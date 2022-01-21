@@ -49,16 +49,34 @@ class ProfileFragment : Fragment() {
         val register : Button = view.findViewById(R.id.registerButton)
         val email : EditText = view.findViewById(R.id.editTextTextEmailAddress)
         val pass : EditText = view.findViewById(R.id.editTextTextPassword)
+        email.text.clear()
+        pass.text.clear()
 
         login.setOnClickListener {
             animateInOut(login)
             if(!switch.isChecked)
             {
                 this.context?.let { it1 -> DataBaseSupport.checkLogin(it1, email.text.toString(), pass.text.toString()) }
+                view.post(Runnable {
+                    if(LoginInterface.getStatus())
+                    {
+                        activity!!.supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                            .replace((view!!.parent as ViewGroup).id, LogedInFragment())
+                            .addToBackStack(null)
+                            .commit()
+                    }
+                })
             }
             else
             {
                 this.context?.let { it1 -> DataBaseSupport.checkEmployeeLogin(it1, email.text.toString(), pass.text.toString()) }
+                if(LoginInterface.getStatus())
+                {
+                    activity!!.supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                        .replace((view!!.parent as ViewGroup).id, LogedInFragment())
+                        .addToBackStack(null)
+                        .commit()
+                }
             }
         }
 

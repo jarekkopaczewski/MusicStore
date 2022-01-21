@@ -5,6 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.EditText
+import android.widget.LinearLayout
+import androidx.core.widget.doOnTextChanged
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import java.util.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +28,10 @@ class WarehouseFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var productsList : ArrayList<ProductSM> = arrayListOf()
+    private var category : String = ""
+    private var searchConstrain : String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -32,10 +43,77 @@ class WarehouseFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_warehouse, container, false)
+    ): View?
+    {
+        val view : View = inflater.inflate(R.layout.fragment_warehouse, container, false)
+        val list : LinearLayout = view.findViewById(R.id.list_warehouse)
+        val refresh : SwipeRefreshLayout = view.findViewById(R.id.refreshLayout2)
+        val browser : EditText = view.findViewById(R.id.browseConstrain2)
+
+        refresh.setOnRefreshListener {
+            list.removeAllViews()
+            for(produkt in productsList)
+            {
+                if( produkt.kod_kreskowy.contains(searchConstrain) || produkt.nazwa.contains(searchConstrain) || searchConstrain == "")
+                {
+                    val newText = BrowserItem(context)
+                    newText.setText(produkt.nazwa, produkt.kod_kreskowy, produkt.ilosc.toString())
+                    newText.setOnClickListener {
+                        animateInOut(newText)
+
+                        val fragment = ItemFragment()
+                        fragment.setProduct( produkt )
+                        requireActivity().supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                            .replace((view!!.parent as ViewGroup).id, fragment)
+                            .addToBackStack(null)
+                            .commit()
+                    }
+                    list.addView(newText)
+                }
+            }
+            refresh.isRefreshing = false
+        }
+
+        view.post(Thread{
+            context?.let { it1 -> DataBaseSupport.getEmployeeItemsFromBase(it1) }
+            productsList = DataBaseSupport.getEmployeeItems()
+            browser.hint = "Szukaj w ${category.decapitalize()}"
+        })
+
+        browser.doOnTextChanged { text, start, before, count ->
+            searchConstrain = browser.text.toString()
+            list.removeAllViews()
+            for(produkt in productsList)
+            {
+                if( produkt.kod_kreskowy.contains(searchConstrain) || produkt.nazwa.contains(searchConstrain) || searchConstrain == "")
+                {
+                    val newText = BrowserItem(context)
+                    newText.setText(produkt.nazwa, produkt.kod_kreskowy, produkt.ilosc.toString())
+                    newText.setOnClickListener {
+                        animateInOut(newText)
+
+                        val fragment = ItemFragment()
+                        fragment.setProduct( produkt )
+                        requireActivity().supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                            .replace((view!!.parent as ViewGroup).id, fragment)
+                            .addToBackStack(null)
+                            .commit()
+                    }
+                    list.addView(newText)
+                }
+            }
+        }
+        return view
     }
+
+    private fun animateInOut(button: View)
+    {
+        val zoomIn: Animation = AnimationUtils.loadAnimation(context, R.anim.zoomin)
+        val zoomOut: Animation = AnimationUtils.loadAnimation(context, R.anim.zoomout)
+        button.startAnimation(zoomIn)
+        button.startAnimation(zoomOut)
+    }
+
 
     companion object {
         /**
