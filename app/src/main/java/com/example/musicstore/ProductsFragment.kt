@@ -98,10 +98,14 @@ class ProductsFragment : Fragment() {
                         .commit()
                 }
             }
-
         })
 
         return view
+    }
+
+    fun refreshProducts()
+    {
+
     }
 
     fun getSystemService(layoutInflaterService: String): Any {
@@ -130,5 +134,11 @@ class ProductsFragment : Fragment() {
         super.onDestroyView()
         linearOne.removeAllViews()
         linearTwo.removeAllViews()
+    }
+
+    override fun onResume()
+    {
+        super.onResume()
+
     }
 }

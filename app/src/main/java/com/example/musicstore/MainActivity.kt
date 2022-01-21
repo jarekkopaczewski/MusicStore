@@ -12,6 +12,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     private val productsFragment = ProductsFragment()
+    private val warehouseFragment = WarehouseFragment()
+    private val storeFragment = StoreFragment()
     private val profileFragment = ProfileFragment()
     private val cartFragment = CartFragment()
     private lateinit var bottomNavigation : BottomNavigationView
@@ -21,17 +23,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setContentView(R.layout.activity_main)
+        replaceFragment(productsFragment)
         DataBaseSupport.getCategoriesFromBase(this)
-        DataBaseSupport.getProductsFromBase(this, "Ukulele")
-
-        DataBaseSupport.getEmployeeItemsFromBase(this)
 
         bottomNavigation = findViewById(R.id.bottom_navigation)
         bottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.ic_home -> replaceFragment(productsFragment)
-                R.id.ic_cart -> replaceFragment(cartFragment)
-                R.id.ic_profile -> replaceFragment(profileFragment)
+                R.id.ic_home -> {
+                    when(LoginInterface.getType())
+                    {
+                        Type.K -> replaceFragment(productsFragment)
+                        Type.M -> replaceFragment(warehouseFragment)
+                        Type.S -> replaceFragment(storeFragment)
+                    }
+                }
+                R.id.ic_cart -> {replaceFragment(cartFragment)}
+                R.id.ic_profile -> {replaceFragment(profileFragment)}
         }
             true
         }

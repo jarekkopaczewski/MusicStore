@@ -29,6 +29,7 @@ class DataBaseSupport {
             val request = StringRequest(
                 Request.Method.GET, "http://192.168.0.32/get_full_table.php?tableName=kategorie&selectedRows=kategoria",
                 {
+                    println(it);
                     val stringArray = java.util.ArrayList<JSONObject>()
                     val jsonArray = JSONArray(it)
 
@@ -72,7 +73,6 @@ class DataBaseSupport {
 
         fun checkLogin(context : Context, email : String, pass : String) : Boolean
         {
-            categoriesList.clear()
             queue = Volley.newRequestQueue(context)
             val request = StringRequest(
                 Request.Method.GET, "http://192.168.0.32/login.php?email=$email&pass=$pass",
@@ -97,7 +97,6 @@ class DataBaseSupport {
 
         fun checkEmployeeLogin(context : Context, email : String, pass : String) : Boolean
         {
-            categoriesList.clear()
             queue = Volley.newRequestQueue(context)
             val request = StringRequest(
                 Request.Method.GET, "http://192.168.0.32/loginEmp.php?email=$email&pass=$pass",
@@ -161,5 +160,6 @@ class DataBaseSupport {
         fun getCategories() : ArrayList<String> =  categoriesList
         fun getProductsData() : ArrayList<ProductData> =  productsList
         fun getEmployeeItems() : ArrayList<ProductSM> =  employeeItems
+        fun getCategoriesSize(): Int = categoriesList.size
     }
 }
