@@ -2,7 +2,6 @@ package com.example.musicstore
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
@@ -12,8 +11,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     private val productsFragment = ProductsFragment()
-    private val warehouseFragment = WarehouseFragment()
-    private val storeFragment = StoreFragment()
+    private val employeeFragment = EmployeeFragment()
+    private val ordersFragment = OrdersFragment()
     private val profileFragment = ProfileFragment()
     private val cartFragment = CartFragment()
     private val logedInFragment = LogedInFragment()
@@ -34,11 +33,19 @@ class MainActivity : AppCompatActivity() {
                     when(LoginInterface.getType())
                     {
                         Type.K -> replaceFragment(productsFragment)
-                        Type.M -> replaceFragment(warehouseFragment)
-                        Type.S -> replaceFragment(storeFragment)
+                        Type.M -> replaceFragment(employeeFragment)
+                        Type.S -> replaceFragment(employeeFragment)
                     }
                 }
-                R.id.ic_cart -> {replaceFragment(cartFragment)}
+                R.id.ic_cart ->
+                {
+                    when(LoginInterface.getType())
+                    {
+                        Type.K -> replaceFragment(cartFragment)
+                        Type.M -> replaceFragment(ordersFragment)
+                        Type.S -> replaceFragment(ordersFragment)
+                    }
+                }
                 R.id.ic_profile ->
                 {
                     when(LoginInterface.getStatus())

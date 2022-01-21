@@ -11,7 +11,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
-import java.util.ArrayList
+import kotlin.collections.ArrayList
 
 class DataBaseSupport {
 
@@ -20,6 +20,7 @@ class DataBaseSupport {
         private var categoriesList : ArrayList<String> = arrayListOf()
         private var productsList : ArrayList<ProductData> = arrayListOf()
         private var employeeItems : ArrayList<ProductSM> = arrayListOf()
+        private var orders : ArrayList<Order> = arrayListOf()
         private lateinit var queue :RequestQueue
 
         fun getCategoriesFromBase(context : Context)
@@ -125,7 +126,6 @@ class DataBaseSupport {
         fun getEmployeeItemsFromBase(context : Context) : Boolean
         {
             employeeItems.clear()
-            categoriesList.clear()
             queue = Volley.newRequestQueue(context)
             var urlReq = "";
 
@@ -157,9 +157,38 @@ class DataBaseSupport {
             return false
         }
 
+        fun getOrdersFromBase(context : Context) : Boolean
+        {
+            orders.clear()
+            queue = Volley.newRequestQueue(context)
+
+            val request = StringRequest(
+                Request.Method.GET, "http://192.168.0.32/get_employee_orders.php",
+                {
+                    val stringArray = java.util.ArrayList<JSONObject>()
+                    val jsonArray = JSONArray(it)
+
+                    for (i in 0 until jsonArray.length())
+                        stringArray.add(jsonArray.get(i) as JSONObject)
+
+                    for((i, item) in stringArray.withIndex())
+                    {
+                        orders.add(Gson().fromJson(stringArray[i].toString(), Order::class.java))
+                    }
+
+                    println(" produkty ${employeeItems.size}")
+                })
+            {
+                VolleyLog.e(it, "Unhandled exception %s", it.toString());
+            }
+            queue.add(request)
+            return false
+        }
+
         fun getCategories() : ArrayList<String> =  categoriesList
         fun getProductsData() : ArrayList<ProductData> =  productsList
         fun getEmployeeItems() : ArrayList<ProductSM> =  employeeItems
+        fun getOrders() : ArrayList<Order> = orders
         fun getCategoriesSize(): Int = categoriesList.size
     }
 }

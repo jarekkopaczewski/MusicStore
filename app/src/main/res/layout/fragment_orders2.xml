@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".EmployeeFragment">
+             tools:context=".OrdersFragment">
     <ImageView
             android:src="@drawable/shadow"
             android:layout_width="match_parent"
-            android:layout_height="30dp" android:id="@+id/imageView10" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/refreshLayout2" app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="30dp" android:id="@+id/imageView12" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/refreshLayout_orders" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" android:rotation="180" android:scaleType="fitXY"
-            android:tint="#A5A4A4" app:layout_constraintVertical_bias="0.0"
-    />
+            android:tint="#A5A4A4" app:layout_constraintVertical_bias="0.0"/>
     <ImageView
             android:src="@drawable/shadow"
             android:layout_width="match_parent"
-            android:layout_height="50dp" android:id="@+id/imageView11" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/refreshLayout2" app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="50dp" android:id="@+id/imageView13" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/refreshLayout_orders" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" android:scaleType="fitXY"
             android:tint="#939292" app:layout_constraintVertical_bias="1.0"/>
     <androidx.cardview.widget.CardView
@@ -27,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent">
         <EditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:id="@+id/browseConstrain2"
+                android:layout_height="match_parent" android:id="@+id/browseConstrain3"
                 android:layout_margin="5dp" android:gravity="center_vertical" android:paddingLeft="10dp"
                 android:backgroundTint="#8A8585"
                 android:hint="Szukaj" tools:ignore="TouchTargetSizeCheck"/>
@@ -35,7 +33,7 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="660dp"
-            android:id="@+id/refreshLayout2" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/refreshLayout_orders" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" android:rotation="180"
             app:layout_constraintVertical_bias="1.0" android:layout_marginTop="15dp">
@@ -46,7 +44,7 @@
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/list_warehouse" android:layout_marginTop="15dp">
+                    android:layout_height="wrap_content" android:id="@+id/list_orders" android:layout_marginTop="15dp">
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

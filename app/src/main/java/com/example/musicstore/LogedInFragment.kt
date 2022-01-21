@@ -41,6 +41,7 @@ class LogedInFragment : Fragment() {
         logout.setOnClickListener {
             Toast.makeText(context, "Log out", Toast.LENGTH_SHORT).show()
             LoginInterface.setStatus(false)
+            LoginInterface.setType(Type.K)
             requireActivity().supportFragmentManager
                 .beginTransaction()
                 .remove(this)

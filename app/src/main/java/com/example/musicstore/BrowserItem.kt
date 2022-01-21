@@ -44,4 +44,11 @@ class BrowserItem(context: Context?) : ConstraintLayout(context!!)
         this.company.text = "Kod kreskowy: $kod"
         this.price.text = "$price szt"
     }
+
+    @SuppressLint("SetTextI18n")
+    fun setText(id : Int, stat : String, price : Int ) {
+        this.name.text = "Id zamówienia: $id"
+        this.company.text = "Status: $stat"
+        this.price.text = "Wartość: $price"
+    }
 }
