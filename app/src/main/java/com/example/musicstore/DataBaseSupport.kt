@@ -19,6 +19,7 @@ class DataBaseSupport {
     {
         private var categoriesList : ArrayList<String> = arrayListOf()
         private var productsList : ArrayList<ProductData> = arrayListOf()
+        private var employeeItems : ArrayList<ProductSM> = arrayListOf()
         private lateinit var queue :RequestQueue
 
         fun getCategoriesFromBase(context : Context)
@@ -122,7 +123,43 @@ class DataBaseSupport {
             return false
         }
 
+        fun getEmployeeItemsFromBase(context : Context) : Boolean
+        {
+            employeeItems.clear()
+            categoriesList.clear()
+            queue = Volley.newRequestQueue(context)
+            var urlReq = "";
+
+            if(LoginInterface.getType() == Type.M)
+                urlReq = "http://192.168.0.32/get_employee_conntent.php?type=magazyn";
+            else if(LoginInterface.getType() == Type.S)
+                urlReq = "http://192.168.0.32/get_employee_conntent.php?type=sklep";
+
+            val request = StringRequest(
+                Request.Method.GET, urlReq,
+                {
+                    val stringArray = ArrayList<JSONObject>()
+                    val jsonArray = JSONArray(it)
+
+                    for (i in 0 until jsonArray.length())
+                        stringArray.add(jsonArray.get(i) as JSONObject)
+
+                    for((i, item) in stringArray.withIndex())
+                    {
+                        employeeItems.add(Gson().fromJson(stringArray[i].toString(), ProductSM::class.java))
+                    }
+
+                    println(" produkty ${employeeItems.size}")
+                })
+            {
+                VolleyLog.e(it, "Unhandled exception %s", it.toString());
+            }
+            queue.add(request)
+            return false
+        }
+
         fun getCategories() : ArrayList<String> =  categoriesList
         fun getProductsData() : ArrayList<ProductData> =  productsList
+        fun getEmployeeItems() : ArrayList<ProductSM> =  employeeItems
     }
 }

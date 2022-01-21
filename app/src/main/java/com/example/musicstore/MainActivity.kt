@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         DataBaseSupport.getCategoriesFromBase(this)
         DataBaseSupport.getProductsFromBase(this, "Ukulele")
 
-        replaceFragment(productsFragment)
+        DataBaseSupport.getEmployeeItemsFromBase(this)
 
         bottomNavigation = findViewById(R.id.bottom_navigation)
         bottomNavigation.setOnNavigationItemSelectedListener {
