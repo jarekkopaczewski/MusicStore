@@ -1,16 +1,19 @@
 package com.example.musicstore
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
-import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,10 +73,37 @@ class CartFragment : Fragment() {
 
         buy.setOnClickListener {
             animateInOut(buy)
+            if( Cart.getProducts().size == 0)
+            {
+                Toast.makeText(context, "Your cart is empty!", Toast.LENGTH_SHORT).show()
+            }
+            else
+            {
+                if(!LoginInterface.getAddressState())
+                    Toast.makeText(context, "Your address is missing", Toast.LENGTH_SHORT).show()
+            }
         }
 
         reserve.setOnClickListener {
             animateInOut(reserve)
+            if( Cart.getProducts().size == 0)
+            {
+                Toast.makeText(context, "Your cart is empty!", Toast.LENGTH_SHORT).show()
+            }
+            else
+            {
+                animateInOut(reserve)
+                val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+                builder.setTitle("Confirm")
+                builder.setMessage("Are you sure?")
+                builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, id ->
+                    Toast.makeText(context, "You will get email with confirm", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                })
+                builder.setNegativeButton("No", DialogInterface.OnClickListener { dialog, id -> dialog.dismiss() })
+                val alert: AlertDialog = builder.create()
+                alert.show()
+            }
         }
 
         refresh.setOnRefreshListener{

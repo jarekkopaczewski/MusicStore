@@ -10,5 +10,120 @@
             android:layout_height="wrap_content" android:id="@+id/logoutButton"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.498" app:layout_constraintVertical_bias="0.499"/>
+            app:layout_constraintHorizontal_bias="0.948" app:layout_constraintVertical_bias="0.023"/>
+    <Button
+            android:text="Update "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/updateData"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.948" app:layout_constraintVertical_bias="0.093"/>
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp" android:fillViewport="true"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/logoutButton" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="10dp" android:layout_marginTop="10dp" android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" android:layout_marginStart="10dp" android:layout_marginBottom="10dp"
+                android:layout_marginEnd="20dp">
+            <TextView
+                    android:text="Dane osobowe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView" android:layout_marginBottom="30dp"/>
+            <TextView
+                    android:text="Imie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView2"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/nameLabel" android:layout_marginBottom="10dp" tools:ignore="TouchTargetSizeCheck"
+                    android:hint="Imie"/>
+            <TextView
+                    android:text="Nazwisko"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView3"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/secondNameLabel" android:layout_marginBottom="10dp"
+                    tools:ignore="TouchTargetSizeCheck" android:hint="Nazwisko"/>
+            <TextView
+                    android:text="email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView4"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/editTextTextPersonName4" android:layout_marginBottom="10dp"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" android:hint="email"/>
+            <TextView
+                    android:text="numer telefonu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView5"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:ems="10"
+                    android:id="@+id/phoneLabel" android:layout_marginBottom="10dp"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" android:hint="numer telefonu"/>
+            <TextView
+                    android:text="miasto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView6"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/cityLabel"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" android:hint="miasto"
+                    android:layout_marginBottom="10dp"/>
+            <TextView
+                    android:text="ulica"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView7"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/streetLabel" tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                    android:hint="ulica" android:layout_marginBottom="10dp"/>
+            <TextView
+                    android:text="numer domu/mieszkania"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView9"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/numberBuild" tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                    android:hint="numer domu" android:layout_marginBottom="10dp"/>
+            <TextView
+                    android:text="kod pocztowy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView10"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/codeLabel" tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                    android:hint="kod pocztowy"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

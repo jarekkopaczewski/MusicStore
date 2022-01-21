@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 
 // TODO: Rename parameter arguments, choose names that match
@@ -37,6 +38,11 @@ class LogedInFragment : Fragment() {
     ): View? {
         val view : View = inflater.inflate(R.layout.fragment_loged_in, container, false)
         val logout : Button = view.findViewById(R.id.logoutButton)
+        val update : Button = view.findViewById(R.id.updateData)
+        val town : EditText = view.findViewById(R.id.cityLabel)
+        val street : EditText = view.findViewById(R.id.streetLabel)
+        val number : EditText = view.findViewById(R.id.numberBuild)
+        val code : EditText = view.findViewById(R.id.codeLabel)
 
         logout.setOnClickListener {
             Toast.makeText(context, "Log out", Toast.LENGTH_SHORT).show()
@@ -47,6 +53,11 @@ class LogedInFragment : Fragment() {
                 .remove(this)
                 .commit()
             requireActivity().supportFragmentManager.popBackStack()
+        }
+
+        update.setOnClickListener {
+            context?.let { it1 -> DataBaseSupport.updateData(it1, town.text.toString(),
+                street.text.toString(), number.text.toString(), code.text.toString()) }
         }
         return view
     }

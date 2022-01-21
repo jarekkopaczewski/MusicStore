@@ -185,6 +185,21 @@ class DataBaseSupport {
             return false
         }
 
+        fun updateData(context : Context, miasto : String, ulica : String, numer : String, kod : String) : Boolean
+        {
+            queue = Volley.newRequestQueue(context)
+            val request = StringRequest(
+                Request.Method.GET, "http://192.168.0.32/updateData.php?miasto=$miasto&ulica=$ulica&numer=$numer&kod=$kod&id=1",
+                {
+                    Toast.makeText(context, "Update success", Toast.LENGTH_SHORT).show()
+                })
+            {
+                VolleyLog.e(it, "Unhandled exception %s", it.toString());
+            }
+            queue.add(request)
+            return false
+        }
+
         fun getCategories() : ArrayList<String> =  categoriesList
         fun getProductsData() : ArrayList<ProductData> =  productsList
         fun getEmployeeItems() : ArrayList<ProductSM> =  employeeItems

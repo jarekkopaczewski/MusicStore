@@ -1,14 +1,14 @@
 package com.example.musicstore
 
 enum class Type {
-    M, S, K                           // 1
+    M, S, K
 }
-// magazyn, sklep, klient
 
 class LoginInterface {
     companion object{
         private var  login: Boolean = false
         private var type = Type.K;
+        private var correctAddress : Boolean = false
 
         fun getStatus(): Boolean = login
         fun setStatus(state:Boolean)
@@ -21,6 +21,7 @@ class LoginInterface {
         {
             this.type = type
         }
-    }
 
+        fun getAddressState() = correctAddress
+    }
 }
