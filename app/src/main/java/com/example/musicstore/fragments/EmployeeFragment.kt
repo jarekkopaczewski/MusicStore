@@ -27,7 +27,7 @@ class EmployeeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view: View = inflater.inflate(R.layout.fragment_warehouse, container, false)
         list = view.findViewById(R.id.list_warehouse)
         val refresh: SwipeRefreshLayout = view.findViewById(R.id.refreshLayout2)
@@ -37,6 +37,7 @@ class EmployeeFragment : Fragment() {
             context?.let { it1 -> DataBaseSupport.getEmployeeItemsFromBase(it1) }
             productsList = DataBaseSupport.getEmployeeItems()
             browser.hint = "Szukaj w ${category.replaceFirstChar { it.lowercase(Locale.getDefault()) }}"
+            refreshProducts(view)
         })
 
         refresh.setOnRefreshListener {

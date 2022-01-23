@@ -46,6 +46,7 @@ class CartFragment : Fragment() {
         view.post(Thread {
             productsList = Cart.getProducts()
             countList = Cart.getCount()
+            refreshItems()
         })
 
         buy.setOnClickListener {

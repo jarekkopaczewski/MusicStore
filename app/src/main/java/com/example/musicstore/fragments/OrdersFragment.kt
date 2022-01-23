@@ -41,6 +41,7 @@ class OrdersFragment : Fragment() {
             context?.let { it1 -> DataBaseSupport.getOrdersFromBase(it1) }
             orders = DataBaseSupport.getOrders()
             browser.hint = "Szukaj w zamowieniach"
+            refresh()
         })
 
         browser.doOnTextChanged { _, _, _, _ ->
