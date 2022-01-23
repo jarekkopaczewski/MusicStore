@@ -56,13 +56,15 @@ class EmployeeFragment : Fragment() {
             {
                 if( produkt.kod_kreskowy.contains(searchConstrain) || produkt.nazwa.contains(searchConstrain) || searchConstrain == "")
                 {
-                    val newText = BrowserItem(context)
+                    val newText = BrowserItemButton(context)
                     newText.setText(produkt.nazwa, produkt.kod_kreskowy, produkt.ilosc.toString())
+                    newText.setKod(produkt.kod_kreskowy)
                     newText.setOnClickListener {
                         animateInOut(newText)
 
                         val fragment = ItemFragment()
                         fragment.setProduct( produkt )
+                        fragment.turnOffButton()
                         requireActivity().supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
                             .replace((view!!.parent as ViewGroup).id, fragment)
                             .addToBackStack(null)
@@ -87,13 +89,15 @@ class EmployeeFragment : Fragment() {
             {
                 if( produkt.kod_kreskowy.contains(searchConstrain) || produkt.nazwa.contains(searchConstrain) || searchConstrain == "")
                 {
-                    val newText = BrowserItem(context)
+                    val newText = BrowserItemButton(context)
                     newText.setText(produkt.nazwa, produkt.kod_kreskowy, produkt.ilosc.toString())
+                    newText.setKod(produkt.kod_kreskowy)
                     newText.setOnClickListener {
                         animateInOut(newText)
 
                         val fragment = ItemFragment()
                         fragment.setProduct( produkt )
+                        fragment.turnOffButton()
                         requireActivity().supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
                             .replace((view!!.parent as ViewGroup).id, fragment)
                             .addToBackStack(null)

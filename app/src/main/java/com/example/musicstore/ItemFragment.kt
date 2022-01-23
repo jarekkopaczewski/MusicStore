@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -26,6 +27,7 @@ class ItemFragment : Fragment() {
     private var param2: String? = null
     private lateinit var product: ProductData
     private lateinit var shopProductSM: ProductSM
+    private var employee = false
     private var type : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +59,12 @@ class ItemFragment : Fragment() {
         val itemPrice : TextView = view.findViewById(R.id.itemPrice)
         val orderButton : ImageView = view.findViewById(R.id.addToCartButton)
 
+        if( employee )
+        {
+            orderButton.visibility = INVISIBLE
+            orderButton.isEnabled = false
+        }
+
         if( type == 1)
         {
             itemName.text = shopProductSM.nazwa
@@ -76,6 +84,11 @@ class ItemFragment : Fragment() {
         }
 
         return view
+    }
+
+    fun turnOffButton()
+    {
+        this.employee = true
     }
 
     private fun animateInOut(button: View)

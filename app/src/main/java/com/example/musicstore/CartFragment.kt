@@ -1,6 +1,7 @@
 package com.example.musicstore
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -79,8 +80,25 @@ class CartFragment : Fragment() {
             }
             else
             {
-                if(!LoginInterface.getAddressState())
+                if(LoginInterface.getAddressState())
+                {
+                    val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+                    builder.setTitle("Confirm")
+                    builder.setMessage("Are you sure?")
+                    builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, id ->
+                        context?.let { it1 -> DataBaseSupport.addOrder(it1, 3) }
+                        calcCart(4, context)
+                        Toast.makeText(context, "You will get email with confirm", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+                    })
+                    builder.setNegativeButton("No", DialogInterface.OnClickListener { dialog, id -> dialog.dismiss() })
+                    val alert: AlertDialog = builder.create()
+                    alert.show()
+                }
+                else
+                {
                     Toast.makeText(context, "Your address is missing", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -92,11 +110,12 @@ class CartFragment : Fragment() {
             }
             else
             {
-                animateInOut(reserve)
                 val builder: AlertDialog.Builder = AlertDialog.Builder(context)
                 builder.setTitle("Confirm")
                 builder.setMessage("Are you sure?")
                 builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, id ->
+                    context?.let { it1 -> DataBaseSupport.addOrder(it1, 4) }
+                    calcCart(4, context)
                     Toast.makeText(context, "You will get email with confirm", Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                 })
@@ -112,6 +131,17 @@ class CartFragment : Fragment() {
         }
 
         return view
+    }
+
+    fun calcCart(status : Int, con: Context?)
+    {
+        val productsList : ArrayList<ProductData> = Cart.getProducts()
+        val countList : ArrayList<Int> = Cart.getCount()
+
+        for( i in 0 until productsList.size)
+        {
+            con?.let { it1 -> DataBaseSupport.addOrderData(it1, productsList[i].kod_kreskowy, countList[i], status ) }
+        }
     }
 
     private fun refreshItems()

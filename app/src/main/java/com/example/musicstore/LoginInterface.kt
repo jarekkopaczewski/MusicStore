@@ -9,6 +9,7 @@ class LoginInterface {
         private var  login: Boolean = false
         private var type = Type.K;
         private var correctAddress : Boolean = false
+        private var clientId : Int = 0
 
         fun getStatus(): Boolean = login
         fun setStatus(state:Boolean)
@@ -23,5 +24,15 @@ class LoginInterface {
         }
 
         fun getAddressState() = correctAddress
+        fun setAddressState( state: Boolean)
+        {
+            this.correctAddress = state
+        }
+
+        fun getClientID() = clientId
+        fun setClientID( clientId: Int)
+        {
+            this.clientId = clientId
+        }
     }
 }

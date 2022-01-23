@@ -55,19 +55,11 @@ class OrdersFragment : Fragment() {
             {
                 if( produkt.id_zamowienia.toString().contains(searchConstrain) || produkt.status.contains(searchConstrain) || searchConstrain == "")
                 {
-                    val newText = BrowserItem(context)
+                    val newText = BrowserItemButton(context)
                     newText.setText(produkt.id_zamowienia, produkt.status, produkt.wartosc)
+                    newText.setType(true)
                     newText.setOnClickListener {
                         animateInOut(newText)
-
-                        val fragment = ItemFragment()
-                        // uwaga !!
-                        fragment.setProduct( ProductSM("f","f","f",2) )
-                        // do naprawy
-                        requireActivity().supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                            .replace((view!!.parent as ViewGroup).id, fragment)
-                            .addToBackStack(null)
-                            .commit()
                     }
                     list.addView(newText)
                 }
@@ -88,19 +80,11 @@ class OrdersFragment : Fragment() {
             {
                 if( produkt.id_zamowienia.toString().contains(searchConstrain) || produkt.status.contains(searchConstrain) || searchConstrain == "")
                 {
-                    val newText = BrowserItem(context)
+                    val newText = BrowserItemButton(context)
                     newText.setText(produkt.id_zamowienia, produkt.status, produkt.wartosc)
+                    newText.setType(true)
                     newText.setOnClickListener {
                         animateInOut(newText)
-
-                        val fragment = ItemFragment()
-                        // uwaga !!
-                        fragment.setProduct( ProductSM("f","f","f",2) )
-                        // do naprawy
-                        requireActivity().supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                            .replace((view!!.parent as ViewGroup).id, fragment)
-                            .addToBackStack(null)
-                            .commit()
                     }
                     list.addView(newText)
                 }

@@ -3,7 +3,6 @@ package com.example.musicstore
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 
@@ -20,7 +19,7 @@ class BrowserItem(context: Context?) : ConstraintLayout(context!!)
         name = view.findViewById(R.id.productName)
         company = view.findViewById(R.id.company)
         price = view.findViewById(R.id.priceText)
-        number = view.findViewById(R.id.numberInCart)
+        number = view.findViewById(R.id.confirmButton)
     }
 
     @SuppressLint("SetTextI18n")

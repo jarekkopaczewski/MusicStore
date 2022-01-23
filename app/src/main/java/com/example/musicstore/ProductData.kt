@@ -9,5 +9,6 @@ data class ProductData(
     @SerializedName("KATEGORIA") val kategoria: String,
     @SerializedName("CENA") val cena: Int,
     @SerializedName("ILOSC") val ilosc: Int,
-    @SerializedName("ID_PRACOWNIKA") val pracownik: Int
+    @SerializedName("ID_PRACOWNIKA") val pracownik: Int,
+    @SerializedName("KOD_KRESKOWY") val kod_kreskowy: String
 )
