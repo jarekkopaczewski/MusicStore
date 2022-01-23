@@ -17,6 +17,7 @@ class DataBaseSupport {
 
     companion object
     {
+        private const val ip : String = "127.0.0.1"
         private var categoriesList : ArrayList<String> = arrayListOf()
         private var productsList : ArrayList<ProductData> = arrayListOf()
         private var employeeItems : ArrayList<ProductSM> = arrayListOf()
@@ -28,7 +29,7 @@ class DataBaseSupport {
             categoriesList.clear()
             queue = Volley.newRequestQueue(context)
             val request = StringRequest(
-                Request.Method.GET, "http://192.168.0.32/get_full_table.php?tableName=kategorie&selectedRows=kategoria",
+                Request.Method.GET, "http://$ip/get_full_table.php?tableName=kategorie&selectedRows=kategoria",
                 {
                     println(it);
                     val stringArray = java.util.ArrayList<JSONObject>()
@@ -51,7 +52,7 @@ class DataBaseSupport {
             productsList.clear()
             queue = Volley.newRequestQueue(context)
             val request = StringRequest(
-                Request.Method.GET, "http://192.168.0.32/get_conntent_from_view.php?category=$category",
+                Request.Method.GET, "http://$ip/get_conntent_from_view.php?category=$category",
                 {
                     val stringArray = ArrayList<JSONObject>()
                     val jsonArray = JSONArray(it)
@@ -76,7 +77,7 @@ class DataBaseSupport {
         {
             queue = Volley.newRequestQueue(context)
             val request = StringRequest(
-                Request.Method.GET, "http://192.168.0.32/login.php?email=$email&pass=$pass",
+                Request.Method.GET, "http://$ip/login.php?email=$email&pass=$pass",
                 {
                     if(!it.equals("null"))
                     {
@@ -100,7 +101,7 @@ class DataBaseSupport {
         {
             queue = Volley.newRequestQueue(context)
             val request = StringRequest(
-                Request.Method.GET, "http://192.168.0.32/loginEmp.php?email=$email&pass=$pass",
+                Request.Method.GET, "http://$ip/loginEmp.php?email=$email&pass=$pass",
                 {
                     if(!it.equals("null"))
                     {
@@ -130,9 +131,9 @@ class DataBaseSupport {
             var urlReq = "";
 
             if(LoginInterface.getType() == Type.M)
-                urlReq = "http://192.168.0.32/get_employee_conntent.php?type=magazyn";
+                urlReq = "http://$ip/get_employee_conntent.php?type=magazyn";
             else if(LoginInterface.getType() == Type.S)
-                urlReq = "http://192.168.0.32/get_employee_conntent.php?type=sklep";
+                urlReq = "http://$ip/get_employee_conntent.php?type=sklep";
 
             val request = StringRequest(
                 Request.Method.GET, urlReq,
@@ -163,7 +164,7 @@ class DataBaseSupport {
             queue = Volley.newRequestQueue(context)
 
             val request = StringRequest(
-                Request.Method.GET, "http://192.168.0.32/get_employee_orders.php",
+                Request.Method.GET, "http://$ip/get_employee_orders.php",
                 {
                     val stringArray = java.util.ArrayList<JSONObject>()
                     val jsonArray = JSONArray(it)
@@ -189,7 +190,7 @@ class DataBaseSupport {
         {
             queue = Volley.newRequestQueue(context)
             val request = StringRequest(
-                Request.Method.GET, "http://192.168.0.32/updateData.php?miasto=$miasto&ulica=$ulica&numer=$numer&kod=$kod&id=1",
+                Request.Method.GET, "http://$ip/updateData.php?miasto=$miasto&ulica=$ulica&numer=$numer&kod=$kod&id=1",
                 {
                     Toast.makeText(context, "Update success", Toast.LENGTH_SHORT).show()
                 })
