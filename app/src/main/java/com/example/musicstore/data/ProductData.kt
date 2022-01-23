@@ -1,7 +1,6 @@
-package com.example.musicstore
+package com.example.musicstore.data
 
 import com.google.gson.annotations.SerializedName
-
 
 data class ProductData(
     @SerializedName("NAZWA_PRODUKTU") val nazwa: String,

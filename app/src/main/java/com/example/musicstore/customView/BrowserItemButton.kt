@@ -1,4 +1,4 @@
-package com.example.musicstore
+package com.example.musicstore.customView
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,20 +9,22 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.musicstore.service.DataBaseSupport
+import com.example.musicstore.R
 
 @SuppressLint("SetTextI18n")
-class BrowserItemButton(context: Context?) : ConstraintLayout(context!!)
-{
-    private var name : TextView
-    private var company : TextView
-    private var ilosc : TextView
-    private var confirm : Button
-    private var plus : Button
-    private var minus : Button
-    private lateinit var kod_kreskowy : String
-    private var iloscNmbr : Int = 0
-    private var idZamowienia : Int = 0
-    private val status : ArrayList<String> = arrayListOf("Do wysyłki", "Zrealizowane", "Anulowano", "Oczewkiwanie na wplate", "Zarezerwowano")
+class BrowserItemButton(context: Context?) : ConstraintLayout(context!!) {
+    private var name: TextView
+    private var company: TextView
+    private var ilosc: TextView
+    private var confirm: Button
+    private var plus: Button
+    private var minus: Button
+    private lateinit var kod: String
+    private var iloscNmbr: Int = 0
+    private var idZamowienia: Int = 0
+    private val status: ArrayList<String> =
+        arrayListOf("Do wysyłki", "Zrealizowane", "Anulowano", "Oczewkiwanie na wplate", "Zarezerwowano")
     private var type = false
 
     init {
@@ -37,16 +39,12 @@ class BrowserItemButton(context: Context?) : ConstraintLayout(context!!)
 
         plus.setOnClickListener {
             animateInOut(plus)
-            if(type)
-            {
-                if( iloscNmbr < status.size-1)
-                {
+            if (type) {
+                if (iloscNmbr < status.size - 1) {
                     iloscNmbr++
                     this.company.text = "Status: ${status[iloscNmbr]}"
                 }
-            }
-            else
-            {
+            } else {
                 iloscNmbr++
                 this.ilosc.text = "$iloscNmbr szt"
             }
@@ -54,10 +52,9 @@ class BrowserItemButton(context: Context?) : ConstraintLayout(context!!)
 
         minus.setOnClickListener {
             animateInOut(minus)
-            if( iloscNmbr >= 1)
-            {
+            if (iloscNmbr >= 1) {
                 iloscNmbr--
-                if(type)
+                if (type)
                     this.company.text = "Status: ${status[iloscNmbr]}"
                 else
                     this.ilosc.text = "$iloscNmbr szt"
@@ -66,19 +63,15 @@ class BrowserItemButton(context: Context?) : ConstraintLayout(context!!)
 
         confirm.setOnClickListener {
             animateInOut(confirm)
-            if(type)
-            {
-                context?.let { it1 -> DataBaseSupport.updateOrderStatus(it1, iloscNmbr, idZamowienia) }
-            }
-            else
-            {
-                context?.let { it1 -> DataBaseSupport.updateItemInStore(it1, iloscNmbr, kod_kreskowy) }
+            if (type) {
+                context.let { it1 -> DataBaseSupport.updateOrderStatus(it1, iloscNmbr, idZamowienia) }
+            } else {
+                context.let { it1 -> DataBaseSupport.updateItemInStore(it1, iloscNmbr, kod) }
             }
         }
     }
 
-    private fun animateInOut(button: View)
-    {
+    private fun animateInOut(button: View) {
         val zoomIn: Animation = AnimationUtils.loadAnimation(context, R.anim.zoomin)
         val zoomOut: Animation = AnimationUtils.loadAnimation(context, R.anim.zoomout)
         button.startAnimation(zoomIn)
@@ -87,7 +80,7 @@ class BrowserItemButton(context: Context?) : ConstraintLayout(context!!)
 
 
     @SuppressLint("SetTextI18n")
-    fun setText(name : String, kod : String, ilosc : String ) {
+    fun setText(name: String, kod: String, ilosc: String) {
         this.name.text = name
         this.company.text = "Kod kreskowy: $kod"
         this.ilosc.text = "$ilosc szt"
@@ -95,19 +88,18 @@ class BrowserItemButton(context: Context?) : ConstraintLayout(context!!)
     }
 
     @SuppressLint("SetTextI18n")
-    fun setText(id : Int, stat : String, price : Int ) {
+    fun setText(id: Int, stat: String, price: Int) {
         this.idZamowienia = id
         this.name.text = "Id zamówienia: $id"
         this.company.text = "Status: $stat"
         this.ilosc.text = "Wartość: $price"
     }
 
-    fun setKod(kod: String){
-        this.kod_kreskowy = kod
+    fun setKod(kod: String) {
+        this.kod = kod
     }
 
-    fun setType(boolean: Boolean)
-    {
+    fun setType(boolean: Boolean) {
         this.type = boolean
     }
 
