@@ -56,6 +56,7 @@ class OrdersFragment : Fragment() {
     {
         for (produkt in orders) {
             if (produkt.id_zamowienia.toString().contains(searchConstrain) ||
+                produkt.status.contains(searchConstrain) ||
                 produkt.status.contains(searchConstrain) || searchConstrain == "") {
                 val newText = BrowserItemButton(context)
                 newText.setText(produkt.id_zamowienia, produkt.status, produkt.wartosc)

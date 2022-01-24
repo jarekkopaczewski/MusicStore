@@ -70,7 +70,7 @@ class DataBaseSupport {
             queue.add(request)
         }
 
-        fun checkLogin(context: Context, email: String, pass: String): Boolean {
+        fun checkLogin(context: Context?, email: String, pass: String): Boolean {
             queue = Volley.newRequestQueue(context)
             val request = StringRequest(
                 Request.Method.GET, "http://$ip/login.php?email=$email&pass=$pass",
@@ -80,16 +80,16 @@ class DataBaseSupport {
                         LoginInterface.setStatus(true)
                         LoginInterface.setClientID(mes.filter { it.isDigit() }.toInt())
                         println(LoginInterface.getClientID())
-                        Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
+                        if(context != null) Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(context, "Login failed", Toast.LENGTH_SHORT).show()
+                        if(context != null) Toast.makeText(context, "Login failed", Toast.LENGTH_SHORT).show()
                     }
                 })
             {
                 VolleyLog.e(it, "Unhandled exception %s", it.toString());
             }
             queue.add(request)
-            return false
+            return true
         }
 
         fun checkEmployeeLogin(context: Context, email: String, pass: String): Boolean {
@@ -112,7 +112,7 @@ class DataBaseSupport {
                 VolleyLog.e(it, "Unhandled exception %s", it.toString());
             }
             queue.add(request)
-            return false
+            return true
         }
 
         fun getEmployeeItemsFromBase(context: Context): Boolean {
@@ -144,7 +144,7 @@ class DataBaseSupport {
                 VolleyLog.e(it, "Unhandled exception %s", it.toString());
             }
             queue.add(request)
-            return false
+            return true
         }
 
         fun getOrdersFromBase(context: Context): Boolean {
@@ -170,7 +170,7 @@ class DataBaseSupport {
                 VolleyLog.e(it, "Unhandled exception %s", it.toString());
             }
             queue.add(request)
-            return false
+            return true
         }
 
         fun updateData(context: Context, miasto: String, ulica: String, numer: String, kod: String): Boolean {
@@ -185,7 +185,7 @@ class DataBaseSupport {
                 VolleyLog.e(it, "Unhandled exception %s", it.toString());
             }
             queue.add(request)
-            return false
+            return true
         }
 
         fun getAddressBase(context: Context): Boolean {
@@ -204,7 +204,7 @@ class DataBaseSupport {
                 VolleyLog.e(it, "Unhandled exception %s", it.toString());
             }
             queue.add(request)
-            return false
+            return true
         }
 
         fun updateItemInStore(context: Context, amount: Int, kod: String): Boolean {
@@ -224,7 +224,7 @@ class DataBaseSupport {
                 VolleyLog.e(it, "Unhandled exception %s", it.toString());
             }
             queue.add(request)
-            return false
+            return true
         }
 
         fun updateOrderStatus(context: Context, code: Int, id: Int): Boolean {
@@ -238,7 +238,7 @@ class DataBaseSupport {
                 VolleyLog.e(it, "Unhandled exception %s", it.toString());
             }
             queue.add(request)
-            return false
+            return true
         }
 
         fun addOrder(context: Context, code: Int): Boolean {
@@ -252,7 +252,7 @@ class DataBaseSupport {
                 VolleyLog.e(it, "Unhandled exception %s", it.toString());
             }
             queue.add(request)
-            return false
+            return true
         }
 
         fun addOrderData(context: Context, kod: String, ilosc: Int, status: Int): Boolean {
@@ -267,7 +267,7 @@ class DataBaseSupport {
                 VolleyLog.e(it, "Unhandled exception %s", it.toString());
             }
             queue.add(request)
-            return false
+            return true
         }
 
         fun getCategories(): ArrayList<String> = categoriesList

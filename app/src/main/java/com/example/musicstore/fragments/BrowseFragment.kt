@@ -24,6 +24,7 @@ class BrowseFragment : Fragment() {
     private var productsList: ArrayList<ProductData> = arrayListOf()
     private var category: String = ""
     private var searchConstrain: String = ""
+    private lateinit var list : LinearLayout
 
     fun setCategory(category: String) {
         this.category = category
@@ -35,29 +36,13 @@ class BrowseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_browse, container, false)
-        val list: LinearLayout = view.findViewById(R.id.list)
+        list = view.findViewById(R.id.list)
         val refresh: SwipeRefreshLayout = view.findViewById(R.id.refreshLayout)
         val browser: EditText = view.findViewById(R.id.browseConstrain)
 
         refresh.setOnRefreshListener {
             list.removeAllViews()
-            for (produkt in productsList) {
-                if (produkt.producent.contains(searchConstrain) || produkt.nazwa.contains(searchConstrain) || searchConstrain == "") {
-                    val newText = BrowserItem(context)
-                    newText.setText(produkt.nazwa, produkt.producent, produkt.cena)
-                    newText.setOnClickListener {
-                        AnimateView.animateInOut(newText,context)
-                        val fragment = ItemFragment()
-                        fragment.setProduct(produkt)
-                        requireActivity().supportFragmentManager.beginTransaction()
-                            .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                            .replace((view.parent as ViewGroup).id, fragment)
-                            .addToBackStack(null)
-                            .commit()
-                    }
-                    list.addView(newText)
-                }
-            }
+            refresh(view)
             refresh.isRefreshing = false
         }
 
@@ -65,6 +50,7 @@ class BrowseFragment : Fragment() {
             context?.let { it1 -> DataBaseSupport.getProductsFromBase(it1, category) }
             productsList = DataBaseSupport.getProductsData()
             browser.hint = "Szukaj w ${category.replaceFirstChar { it.lowercase(Locale.getDefault()) }}"
+            refresh(view)
         })
 
         browser.doOnTextChanged { _, _, _, _ ->
@@ -94,5 +80,26 @@ class BrowseFragment : Fragment() {
             }
         }
         return view
+    }
+
+    private fun refresh(view: View)
+    {
+        for (produkt in productsList) {
+            if (produkt.producent.contains(searchConstrain) || produkt.nazwa.contains(searchConstrain) || searchConstrain == "") {
+                val newText = BrowserItem(context)
+                newText.setText(produkt.nazwa, produkt.producent, produkt.cena)
+                newText.setOnClickListener {
+                    AnimateView.animateInOut(newText,context)
+                    val fragment = ItemFragment()
+                    fragment.setProduct(produkt)
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                        .replace((view.parent as ViewGroup).id, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                }
+                list.addView(newText)
+            }
+        }
     }
 }

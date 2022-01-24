@@ -10,26 +10,27 @@ class Cart {
         private var productsList: ArrayList<ProductData> = arrayListOf()
         private var countList: ArrayList<Int> = arrayListOf()
 
-        fun addProduct(product: ProductData, context: Context) {
+        fun addProduct(product: ProductData, context: Context?) {
             if (productsList.contains(product)) {
                 countList[productsList.indexOf(product)]++
-                Toast.makeText(context, "Item added to your cart", Toast.LENGTH_SHORT).show()
+                if( context != null) Toast.makeText(context, "Item added to your cart", Toast.LENGTH_SHORT).show()
 
             } else {
                 productsList.add(product)
                 countList.add(1)
-                Toast.makeText(context, "Item added to your cart", Toast.LENGTH_SHORT).show()
+                if( context != null) Toast.makeText(context, "Item added to your cart", Toast.LENGTH_SHORT).show()
             }
         }
 
-        fun deleteProduct(product: ProductData, context: Context) {
+        fun deleteProduct(product: ProductData, context: Context?) {
+            if(productsList.size == 0) return
             if (countList[productsList.indexOf(product)] == 1) {
                 countList.removeAt(productsList.indexOf(product))
                 productsList.remove(product)
-                Toast.makeText(context, "Item removed from your cart", Toast.LENGTH_SHORT).show()
+                if( context != null) Toast.makeText(context, "Item removed from your cart", Toast.LENGTH_SHORT).show()
             } else if (countList[productsList.indexOf(product)] > 1) {
                 countList[productsList.indexOf(product)]--
-                Toast.makeText(context, "Item removed from your cart", Toast.LENGTH_SHORT).show()
+                if( context != null) Toast.makeText(context, "Item removed from your cart", Toast.LENGTH_SHORT).show()
             }
         }
 
