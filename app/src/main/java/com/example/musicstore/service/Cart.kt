@@ -36,5 +36,9 @@ class Cart {
 
         fun getProducts(): ArrayList<ProductData> = productsList
         fun getCount(): ArrayList<Int> = countList
+        fun clear(){
+            countList.clear()
+            productsList.clear()
+        }
     }
 }
