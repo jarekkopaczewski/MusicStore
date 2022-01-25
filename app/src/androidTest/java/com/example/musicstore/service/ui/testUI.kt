@@ -11,13 +11,16 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.example.musicstore.MainActivity
 import com.example.musicstore.R
+import com.example.musicstore.service.group.AllTest
 import org.junit.Rule
 import org.junit.Test
+import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
+@Category(AllTest::class)
 @LargeTest
-class HelloWorldEspressoTest {
+class testUI {
 
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)

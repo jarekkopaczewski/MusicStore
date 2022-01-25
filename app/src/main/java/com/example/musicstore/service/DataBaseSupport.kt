@@ -80,9 +80,9 @@ class DataBaseSupport {
                         LoginInterface.setStatus(true)
                         LoginInterface.setClientID(mes.filter { it.isDigit() }.toInt())
                         println(LoginInterface.getClientID())
-                        if(context != null) Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
+                        if (context != null) Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
                     } else {
-                        if(context != null) Toast.makeText(context, "Login failed", Toast.LENGTH_SHORT).show()
+                        if (context != null) Toast.makeText(context, "Login failed", Toast.LENGTH_SHORT).show()
                     }
                 })
             {
@@ -179,6 +179,7 @@ class DataBaseSupport {
                 Request.Method.GET,
                 "http://$ip/updateData.php?miasto=$miasto&ulica=$ulica&numer=$numer&kod=$kod&id=${LoginInterface.getClientID()}",
                 {
+                    println("http://$ip/updateData.php?miasto=$miasto&ulica=$ulica&numer=$numer&kod=$kod&id=${LoginInterface.getClientID()}")
                     Toast.makeText(context, "Update success", Toast.LENGTH_SHORT).show()
                 })
             {
@@ -262,6 +263,26 @@ class DataBaseSupport {
                 "http://$ip/add_order_2.php?id_k=${LoginInterface.getClientID()}&kod=$kod&ilosc=$ilosc&status=$status",
                 {
                     Toast.makeText(context, "Update success", Toast.LENGTH_SHORT).show()
+                })
+            {
+                VolleyLog.e(it, "Unhandled exception %s", it.toString());
+            }
+            queue.add(request)
+            return true
+        }
+
+        fun addUser(
+            context: Context, name: String, secName: String, email: String,
+            phone: String, city: String, street: String, number: String, code: String,
+            login: String, pass: String
+        ): Boolean {
+
+            queue = Volley.newRequestQueue(context)
+            val request = StringRequest(
+                Request.Method.GET,
+                "http://$ip/add_user.php?imie=$name&nazwisko=$secName&email=$email&login=$login&pass=$pass&phone=$phone&miasto=$city&ulica=$street&numer=$number&kod=$code",
+                {
+                    Toast.makeText(context, "Register success", Toast.LENGTH_SHORT).show()
                 })
             {
                 VolleyLog.e(it, "Unhandled exception %s", it.toString());

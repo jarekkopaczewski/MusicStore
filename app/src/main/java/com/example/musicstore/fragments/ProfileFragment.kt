@@ -69,6 +69,11 @@ class ProfileFragment : Fragment() {
 
         register.setOnClickListener {
             AnimateView.animateInOut(register, context)
+            activity!!.supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                .replace((view.parent as ViewGroup).id, RegisterFragment())
+                .addToBackStack(null)
+                .commit()
         }
         return view
     }

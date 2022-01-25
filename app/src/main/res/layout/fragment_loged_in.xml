@@ -43,50 +43,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/textView" android:layout_marginBottom="30dp"/>
             <TextView
-                    android:text="Imie"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textView2"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/nameLabel" android:layout_marginBottom="10dp" tools:ignore="TouchTargetSizeCheck"
-                    android:hint="Imie"/>
-            <TextView
-                    android:text="Nazwisko"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textView3"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/secondNameLabel" android:layout_marginBottom="10dp"
-                    tools:ignore="TouchTargetSizeCheck" android:hint="Nazwisko"/>
-            <TextView
-                    android:text="email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textView4"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/editTextTextPersonName4" android:layout_marginBottom="10dp"
-                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" android:hint="email"/>
-            <TextView
-                    android:text="numer telefonu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textView5"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="phone"
-                    android:ems="10"
-                    android:id="@+id/phoneLabel" android:layout_marginBottom="10dp"
-                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" android:hint="numer telefonu"/>
-            <TextView
                     android:text="miasto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/textView6"/>

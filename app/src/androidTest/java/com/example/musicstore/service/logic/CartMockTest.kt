@@ -2,13 +2,14 @@ package com.example.musicstore.service.logic
 
 import com.example.musicstore.data.ProductData
 import com.example.musicstore.service.Cart
+import com.example.musicstore.service.group.AllTest
 import com.example.musicstore.service.group.BasicLogicTest
 import org.junit.Assert
 import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.mockito.Mockito.mock
 
-@Category(BasicLogicTest::class)
+@Category(BasicLogicTest::class, AllTest::class)
 class CartMockTest {
 
     private fun getProductDataMock(): ProductData {
