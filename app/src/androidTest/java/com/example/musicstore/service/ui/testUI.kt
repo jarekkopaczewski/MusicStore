@@ -48,7 +48,7 @@ class testUI {
         onView(withId(R.id.ic_home)).perform(click())
         Thread.sleep(200)
         onView(withId(R.id.products_row_one)).perform(click())
-        onView(withId(R.id.browseConstrain)).perform(typeText("I"))
+        onView(withId(R.id.browseConstrain)).perform(typeText("K"))
         Thread.sleep(200)
         onView(withId(R.id.list)).perform(click())
         onView(withId(R.id.addToCartButton)).perform(click())
