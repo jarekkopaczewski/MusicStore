@@ -58,7 +58,7 @@ fun getAddressBase(context: Context): Boolean {
             }
             queue.add(request)
             return true
-        }
+}
 
 ```
 ## License
