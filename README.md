@@ -19,6 +19,7 @@ Music store app connected to MySQL database
 * [PHP](https://www.php.net/)
 * [MySQL](https://www.mysql.com/)
 * [XAMPP](https://www.apachefriends.org/pl/index.html)
+* [Gradle](https://gradle.org/)
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 * [Volley](https://github.com/google/volley)
 * [Gson](https://github.com/google/gson)
