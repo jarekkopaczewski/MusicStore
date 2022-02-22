@@ -1,8 +1,7 @@
 # Table of contents
 * [General info](#general-info)
 * [Built With](#built-with)
-* [Save parameters](#save-parameters)
-* [Prepare to play](#prepare-to-play)
+* [Espresso test](espresso-test)
 * [License](#license)
 
 # About The Project
