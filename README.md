@@ -41,24 +41,24 @@ data class Address(
 ## Example of database connection
 
 ```kotlin
-fun getAddressBase(context: Context): Boolean {
-    queue = Volley.newRequestQueue(context)
-    val request = StringRequest(
-    Request.Method.GET, "http://192.168.0.32/get_address.php?id=${LoginInterface.getClientID()}",
-    {
-        if (LoginInterface.getType() == Type.K) {
-            currentAddress = Gson().fromJson(it, Address::class.java)
+        fun getAddressBase(context: Context): Boolean {
+            queue = Volley.newRequestQueue(context)
+            val request = StringRequest(
+                Request.Method.GET, "http://192.168.0.32/get_address.php?id=${LoginInterface.getClientID()}",
+                {
+                    if (LoginInterface.getType() == Type.K) {
+                        currentAddress = Gson().fromJson(it, Address::class.java)
                         if (currentAddress.miasto != "" && currentAddress.ulica != "" && currentAddress.numer_domu != 0 && currentAddress.kod_pocztowy != "")
                             LoginInterface.setAddressState(true)
                         println("pobrano adres.")
                     }
                 })
-        {
-             VolleyLog.e(it, "Unhandled exception %s", it.toString());
+            {
+                VolleyLog.e(it, "Unhandled exception %s", it.toString());
+            }
+            queue.add(request)
+            return true
         }
-        queue.add(request)
-        return true          
-}
 
 ```
 ## License
