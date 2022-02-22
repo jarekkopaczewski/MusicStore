@@ -23,6 +23,23 @@ Music store app connected to MySQL database hosted on the local XAMPP server. Th
 * [Volley](https://github.com/google/volley)
 * [Gson](https://github.com/google/gson)
 
+## Serialized class 
+Example of class used to parse from JSON objects.
+
+```kotlin
+package com.example.musicstore.data
+
+import com.google.gson.annotations.SerializedName
+
+data class Address(
+    @SerializedName("MIASTO") val miasto: String,
+    @SerializedName("ULICA") val ulica: String,
+    @SerializedName("NUMER_MIESZKANIA") val numer_domu: Int,
+    @SerializedName("KOD_POCZTOWY") val kod_pocztowy: String
+)
+```
+
+
 ## License
 
 Distributed under the Apache-2.0 License.
