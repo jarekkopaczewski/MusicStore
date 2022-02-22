@@ -2,6 +2,9 @@
 * [General info](#general-info)
 * [Built With](#built-with)
 * [Espresso test](#espresso-test)
+* [Serialized class](#serialized-class)
+* [Example of database connection](#example-of-database-connection)
+* [Example of PHP script](#example-of-php-script)
 * [License](#license)
 
 # About The Project
