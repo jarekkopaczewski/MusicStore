@@ -44,65 +44,64 @@ data class Address(
 ## Example of database connection
 
 ```kotlin
-        fun getAddressBase(context: Context): Boolean {
-            queue = Volley.newRequestQueue(context)
-            val request = StringRequest(
-                Request.Method.GET, "http://192.168.0.32/get_address.php?id=${LoginInterface.getClientID()}",
-                {
-                    if (LoginInterface.getType() == Type.K) {
-                        currentAddress = Gson().fromJson(it, Address::class.java)
-                        if (currentAddress.miasto != "" && currentAddress.ulica != "" && currentAddress.numer_domu != 0 && currentAddress.kod_pocztowy != "")
-                            LoginInterface.setAddressState(true)
-                        println("pobrano adres.")
-                    }
-                })
-            {
-                VolleyLog.e(it, "Unhandled exception %s", it.toString());
+fun getAddressBase(context: Context): Boolean {
+    queue = Volley.newRequestQueue(context)
+    val request = StringRequest(
+        Request.Method.GET, "http://192.168.0.32/get_address.php?id=${LoginInterface.getClientID()}",
+        {
+            if (LoginInterface.getType() == Type.K) {
+                currentAddress = Gson().fromJson(it, Address::class.java)
+                if (currentAddress.miasto != "" && currentAddress.ulica != "" && currentAddress.numer_domu != 0 && currentAddress.kod_pocztowy != "")
+                    LoginInterface.setAddressState(true)
+                println("pobrano adres.")
             }
-            queue.add(request)
-            return true
-        }
-
+        })
+    {
+        VolleyLog.e(it, "Unhandled exception %s", it.toString());
+    }
+    queue.add(request)
+    return true
+}
 ```
 ## Example of PHP script
 ```php
-    class GetOrders
+class GetOrders
+{
+    private $server_name = "localhost";
+    private $user_name = "admin";
+    private $user_password = "theadminpass";
+    private $database_name = "bd";
+    private $connection = null;
+
+    function __construct()
     {
-        private $server_name = "localhost";
-        private $user_name = "admin";
-        private $user_password = "theadminpass";
-        private $database_name = "bd";
-        private $connection = null;
-
-        function __construct()
+        $this->connection = new mysqli($this->server_name, $this->user_name, $this->user_password, $this->database_name);
+        if ($this->connection->connect_error) 
         {
-            $this->connection = new mysqli($this->server_name, $this->user_name, $this->user_password, $this->database_name);
-            if ($this->connection->connect_error) 
-            {
-                die("Connection failed: " . $this->connection->connect_error);
-            }
-        }
-
-        function __destruct() 
-        {
-            $this->connection->close(); 
-        }
-
-        function getView()
-        {
-            $sql = "SELECT * FROM zamowienia;";
-            $query = $this->connection->query($sql);
-            $rows = array();    
-            
-            while($row = mysqli_fetch_assoc($query)) 
-            {
-                $rows[] = $row;
-            }
-            
-            echo json_encode($rows);
-            return json_encode($rows);
+            die("Connection failed: " . $this->connection->connect_error);
         }
     }
+
+    function __destruct() 
+    {
+        $this->connection->close(); 
+    }
+
+    function getView()
+    {
+        $sql = "SELECT * FROM zamowienia;";
+        $query = $this->connection->query($sql);
+        $rows = array();    
+        
+        while($row = mysqli_fetch_assoc($query)) 
+        {
+            $rows[] = $row;
+        }
+        
+        echo json_encode($rows);
+        return json_encode($rows);
+    }
+}
 ```
 
 ## License
