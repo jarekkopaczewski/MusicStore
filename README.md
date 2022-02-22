@@ -7,7 +7,7 @@
 # About The Project
 
 ## General info
-Music store app connected to MySQL database
+Music store app connected to MySQL database hosted on the local XAMPP server. The application is written in Kotlin for the Android devices. Access to the database is done by php scripts that invoke SQL queries and return responses as a JSON array/object. The application uses the Volley library to send URL requests and GSON library to process responses to the objects.
 
 ## Espresso test
 <img src="https://github.com/jarekkopaczewski/music_store/blob/42b8d69d67fb717a10f988b8de4b53004fa91962/pres.gif" height="750"/>
@@ -25,6 +25,6 @@ Music store app connected to MySQL database
 
 ## License
 
-Distributed under the MIT License.
+Distributed under the Apache-2.0 License.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
