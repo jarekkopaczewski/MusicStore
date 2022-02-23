@@ -52,3 +52,4 @@ class DataBaseSupportTest {
         assertTrue(DataBaseSupport.getProductsData().size == 0)
     }
 }
+
