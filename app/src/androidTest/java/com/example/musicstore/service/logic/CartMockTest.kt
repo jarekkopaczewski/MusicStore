@@ -49,4 +49,3 @@ class CartMockTest {
         Assert.assertEquals(0, Cart.getProducts().size)
     }
 }
-
