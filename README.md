@@ -7,6 +7,7 @@
 * [Example of PHP script](#example-of-php-script)
 * [License](#license)
 
+
 # About The Project
 
 ## General info
